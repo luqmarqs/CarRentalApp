@@ -7,7 +7,7 @@ namespace CarRentalApp.Services
         public double PricePerHour { get; private set; }
         public double PricePerDay { get; private set; }
 
-        private BrazilTaxService _brazilTaxService = new BrazilTaxService();
+        private BrazilTaxService _brazilTaxService = new BrazilTaxService(); //dependência muito forte, fortemente acoplado!
 
         public RentalService(double pricePerHour, double pricePerDay)
         {
