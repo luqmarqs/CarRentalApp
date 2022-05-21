@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
-using CarRentalApp.Entities;
-using CarRentalApp.Services;
+using CarRentalAppV2.Entities;
+using CarRentalAppV2.Services;
 
 Console.WriteLine("Enter rental data: ");
 Console.WriteLine("Car model: ");
@@ -18,7 +18,7 @@ double day = double.Parse(Console.ReadLine());
 
 CarRental carRental = new CarRental(start, finish, new Vehicle(model));
 
-RentalService rentalService = new RentalService(hour, day);
+RentalService rentalService = new RentalService(hour, day, new BrazilTaxService());
 
 rentalService.ProcessInvoice(carRental);
 

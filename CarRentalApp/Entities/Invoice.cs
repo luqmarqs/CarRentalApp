@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarRentalApp.Entities
+namespace CarRentalAppV2.Entities
 {
     class Invoice
     {

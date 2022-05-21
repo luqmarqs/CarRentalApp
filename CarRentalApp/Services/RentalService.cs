@@ -1,18 +1,20 @@
-﻿using CarRentalApp.Entities;
+﻿using CarRentalAppV2.Entities;
+using CarRentalAppV2.Services;
 
-namespace CarRentalApp.Services
+namespace CarRentalAppV2.Services
 {
     class RentalService
     {
         public double PricePerHour { get; private set; }
         public double PricePerDay { get; private set; }
 
-        private BrazilTaxService _brazilTaxService = new BrazilTaxService(); //dependência muito forte, fortemente acoplado!
+        private ITaxService _taxService;
 
-        public RentalService(double pricePerHour, double pricePerDay)
+        public RentalService(double pricePerHour, double pricePerDay, ITaxService taxService)
         {
             PricePerHour = pricePerHour;
             PricePerDay = pricePerDay;
+            _taxService = taxService; /// inversão de controle por injeção de dependência
         }
 
         public void ProcessInvoice(CarRental carRental)
@@ -26,7 +28,7 @@ namespace CarRentalApp.Services
             else
                 basicPayment = PricePerDay * Math.Ceiling(duration.TotalDays);
 
-            double tax = _brazilTaxService.Tax(basicPayment);
+            double tax = _taxService.Tax(basicPayment);
 
             carRental.Invoice = new Invoice(basicPayment, tax);
         }

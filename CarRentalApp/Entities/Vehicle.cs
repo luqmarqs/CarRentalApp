@@ -1,5 +1,5 @@
 ﻿
-namespace CarRentalApp.Entities
+namespace CarRentalAppV2.Entities
 {
     class Vehicle
     {
